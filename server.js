@@ -44,8 +44,18 @@ app.use(limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from root directory
+app.use(express.static(__dirname));
+
+// Set correct MIME types
+app.use((req, res, next) => {
+    if (req.url.endsWith('.css')) {
+        res.type('text/css');
+    } else if (req.url.endsWith('.js')) {
+        res.type('application/javascript');
+    }
+    next();
+});
 
 // Routes
 app.get('/', (req, res) => {

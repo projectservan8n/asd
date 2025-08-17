@@ -3,81 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculate Your Automation ROI</title>
+    <title>RJHL Tech - Automation Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Calculate Your Automation ROI</h1>
+    <canvas id="data-stream-canvas"></canvas>
+    
+    <div class="tpl-page-wrapper">
+        <header class="tpl-header">
+            <div class="tpl-container">
+                <a href="/" class="tpl-logo">
+                    <span class="highlight-orange">RJHL</span> Tech
+                </a>
+                <div class="header-actions-wrapper">
+                    <div class="header-controls">
+                        <a href="#cta" class="tpl-btn tpl-btn-primary magnetic-button">
+                            <span>Claim My Strategy Call</span>
+                        </a>
+                    </div>
+                    <button id="theme-toggle" title="Toggle theme" class="magnetic-button">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
         </header>
 
         <main>
-            <section class="calculator-section">
-                <div class="calculator-container">
-                    <h2>Estimated Weekly Hours You Could Reclaim:</h2>
-                    <div class="hours-display" id="hoursDisplay">28</div>
-                    <div class="calculator-inputs">
-                        <div class="input-group">
-                            <label for="emailsPerWeek">Emails sent per week:</label>
-                            <input type="number" id="emailsPerWeek" value="50" min="0">
+            <section class="tpl-section tpl-hero-section">
+                <div id="automation-terminal">
+                    <pre><code id="terminal-content"></code></pre>
+                </div>
+            </section>
+
+            <section id="calculator" class="tpl-section">
+                <div class="roi-calculator animate-on-scroll">
+                    <h2 class="tpl-section-title">Calculate Your Automation ROI</h2>
+                    <div class="calculator-grid">
+                        <div>
+                            <label for="employees">Team members on repetitive tasks? <span id="employees-value">5</span></label>
+                            <input type="range" id="employees" min="1" max="50" value="5">
                         </div>
-                        <div class="input-group">
-                            <label for="dataEntry">Hours of data entry per week:</label>
-                            <input type="number" id="dataEntry" value="10" min="0" step="0.5">
+                        <div>
+                            <label for="hours">Hours per member weekly? <span id="hours-value">8</span></label>
+                            <input type="range" id="hours" min="1" max="40" value="8">
                         </div>
-                        <div class="input-group">
-                            <label for="followUps">Follow-up tasks per week:</label>
-                            <input type="number" id="followUps" value="25" min="0">
-                        </div>
-                        <div class="input-group">
-                            <label for="reporting">Hours of reporting per week:</label>
-                            <input type="number" id="reporting" value="5" min="0" step="0.5">
-                        </div>
+                    </div>
+                    <div class="roi-result">
+                        <h3>Estimated Weekly Hours You Could Reclaim:</h3>
+                        <span id="hours-saved">28</span>
                     </div>
                 </div>
             </section>
 
-            <section class="value-proposition">
-                <div class="tagline">
-                    <h2>Your business is a machine. Let's stop fixing it and start engineering it.</h2>
-                </div>
-                
-                <div class="description">
-                    <p>We don't just patch problems. We design, build, and deploy end-to-end automation systems that become the operational backbone of your business.</p>
-                </div>
-
-                <div class="process-flow">
-                    <div class="process-step">
-                        <div class="step-header">Trigger</div>
-                        <div class="step-content">New lead, sale, or event.</div>
-                    </div>
-                    <div class="process-arrow">→</div>
-                    <div class="process-step">
-                        <div class="step-header">Logic</div>
-                        <div class="step-content">Qualify, segment, and route data.</div>
-                    </div>
-                    <div class="process-arrow">→</div>
-                    <div class="process-step">
-                        <div class="step-header">Action</div>
-                        <div class="step-content">Update CRM, assign tasks, send emails.</div>
-                    </div>
-                    <div class="process-arrow">→</div>
-                    <div class="process-step">
-                        <div class="step-header">Result</div>
-                        <div class="step-content">Growth, efficiency, and clarity.</div>
+            <section class="tpl-section">
+                <div class="tpl-container">
+                    <h2 class="tpl-section-title animate-on-scroll">Your business is a machine. Let's stop fixing it and start engineering it.</h2>
+                    <p class="tpl-section-subtitle animate-on-scroll">We don't just patch problems. We design, build, and deploy end-to-end automation systems that become the operational backbone of your business.</p>
+                    <div class="workflow-visualizer animate-on-scroll">
+                        <div class="workflow-node animate-on-scroll">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Trigger</h4>
+                            <p>New lead, sale, or event.</p>
+                        </div>
+                        <div class="workflow-node animate-on-scroll">
+                            <i class="fas fa-code-branch"></i>
+                            <h4>Logic</h4>
+                            <p>Qualify, segment, and route data.</p>
+                        </div>
+                        <div class="workflow-node animate-on-scroll">
+                            <i class="fas fa-cogs"></i>
+                            <h4>Action</h4>
+                            <p>Update CRM, assign tasks, send emails.</p>
+                        </div>
+                        <div class="workflow-node animate-on-scroll">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Result</h4>
+                            <p>Growth, efficiency, and clarity.</p>
+                        </div>
+                        <svg class="workflow-svg">
+                            <path d="M 200,50 L 900,50"></path>
+                            <foreignObject x="0" y="0" width="100%" height="100%">
+                                <div id="data-packet"></div>
+                            </foreignObject>
+                        </svg>
                     </div>
                 </div>
             </section>
-
-            <section class="guarantee">
-                <div class="guarantee-content">
-                    <h2>The RJHL 10-Hour Guarantee</h2>
-                    <p>I'm so confident I can engineer a more efficient future for your business, I make this promise: If I can't find at least 10 hours of weekly time-savings during our free strategy call, I'll send you a gift card for your favorite coffee shop.</p>
-                    <a href="/book-a-call.html" class="cta-button">Claim My Risk-Free Strategy Call</a>
+            
+            <section id="cta" class="tpl-section">
+                <div class="tpl-container">
+                    <div class="guarantee-card animate-on-scroll">
+                        <h2 class="tpl-section-title">The RJHL 10-Hour Guarantee</h2>
+                        <p class="tpl-section-subtitle">I'm so confident I can engineer a more efficient future for your business, I make this promise: If I can't find at least 10 hours of weekly time-savings during our free strategy call, I'll send you a gift card for your favorite coffee shop.</p>
+                        <a href="/book-a-call.html" class="tpl-btn tpl-btn-primary magnetic-button" style="padding: 16px 35px; font-size: 1rem;">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Claim My Risk-Free Strategy Call</span>
+                        </a>
+                    </div>
                 </div>
             </section>
         </main>
+        
+        <footer class="tpl-footer">
+            <div class="tpl-container">
+                <p>© <script>document.write(new Date().getFullYear())</script> RJHL Tech. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <script src="script.js"></script>
